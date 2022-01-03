@@ -4,6 +4,11 @@ ST-ctl-ST-NAME = NodeServer Online
 ST-ctl-GV0-NAME = Number of childeren
 CMD-ctl-DISCOVER-NAME = Re-Discover
 
+# Controller Status
+CST-0 = Disconnected
+CST-1 = Connected
+CST-2 = Failed
+
 ND-child-NAME = Example - Counter Child
 ND-child-ICON = Output
 ST-str-ST-NAME = Counter Active

@@ -22,7 +22,7 @@ shortPoll interval.
 class Controller(udi_interface.Node):
     id = 'ctl'
     drivers = [
-            {'driver': 'ST', 'value': 1, 'uom': 2},
+            {'driver': 'ST', 'value': 1, 'uom': 25},
             {'driver': 'GV0', 'value': 0, 'uom': 56},
             ]
 
@@ -39,11 +39,11 @@ class Controller(udi_interface.Node):
         polyglot.subscribe(polyglot.CUSTOMPARAMS, self.parameterHandler)
         polyglot.subscribe(polyglot.STOP, self.stop)
         polyglot.subscribe(polyglot.START, self.start, address)
-        polyglot.subscribe(polyglot.ADDNODEDONE, self.node_queue)
+        #polyglot.subscribe(polyglot.ADDNODEDONE, self.node_queue)
 
         # start processing events and create add our controller node
         polyglot.ready()
-        self.poly.addNode(self)
+        self.poly.addNode(self, conn_status='ST')
 
     '''
     node_queue() and wait_for_node_event() create a simple way to wait
@@ -119,7 +119,7 @@ class Controller(udi_interface.Node):
             try:
                 node = count_child.CounterNode(self.poly, self.address, address, title)
                 self.poly.addNode(node)
-                self.wait_for_node_done()
+                #self.wait_for_node_done()
             except Exception as e:
                 LOGGER.error('Failed to create {}: {}'.format(title, e))
 
