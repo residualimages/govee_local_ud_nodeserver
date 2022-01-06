@@ -32,6 +32,7 @@ class Controller(udi_interface.Node):
         self.poly = polyglot
         self.count = 0
         self.n_queue = []
+        self.got_nsdata = False
 
         self.Parameters = Custom(polyglot, 'customparams')
 
@@ -40,6 +41,8 @@ class Controller(udi_interface.Node):
         polyglot.subscribe(polyglot.STOP, self.stop)
         polyglot.subscribe(polyglot.START, self.start, address)
         polyglot.subscribe(polyglot.ADDNODEDONE, self.node_queue)
+        self.got_nsdata = None
+        polyglot.subscribe(polyglot.CUSTOMNS,          self.handler_nsdata)
 
         # start processing events and create add our controller node
         polyglot.ready()
@@ -58,6 +61,10 @@ class Controller(udi_interface.Node):
         while len(self.n_queue) == 0:
             time.sleep(0.1)
         self.n_queue.pop()
+
+    def handler_nsdata(self, key, data):
+        LOGGER.debug(f"key={key} data={data}")
+        self.got_nsdata = True
 
     '''
     Read the user entered custom parameters.  Here is where the user will
@@ -82,6 +89,15 @@ class Controller(udi_interface.Node):
         else:
             self.poly.Notices['nodes'] = 'Please configure the number of child nodes to create.'
 
+        # Wait to see if nsdata is loaded...
+        count = 15
+        while not self.got_nsdata and count > 0:
+            LOGGER.warning(f"Waiting for nsdata {self.got_nsdata} to be loaded...")
+            time.sleep(1)
+            count -= 1
+        if not self.got_nsdata:
+            LOGGER.error(f"Timeout waiting for nsdata {self.got_nsdata}")
+
 
     '''
     This is called when the node is added to the interface module. It is
@@ -93,6 +109,7 @@ class Controller(udi_interface.Node):
     the profiles to the ISY.
     '''
     def start(self):
+        LOGGER.info(f"Started Example3 NodeServer {self.poly.serverdata['version']}")
         self.poly.setCustomParamsDoc()
         # Not necessary to call this since profile_version is used from server.json
         self.poly.updateProfile()
