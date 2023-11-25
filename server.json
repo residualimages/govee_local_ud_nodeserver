@@ -1,31 +1,31 @@
 {
-    "name": "Example-3",
-    "docs": "https://github.com/UniversalDevicesInc/udi-example3-poly/README.md",
+    "name": "Govee Local Network Based NodeServer",
+    "docs": "https://github.com/residualimages/govee_local_ud_nodeserver/blob/master/README.md",
     "type": "python3",
-    "executable": "count.py",
+    "executable": "govee_local_root_nodeserver.py",
     "install": "install.sh",
-    "description": "Example node server that creates a user specified number of counter child nodes.",
+    "description": "Local Network-Based Control of Govee Lights - Polyglot v3 NodeServer for Universal Devices Controllers",
     "notice": "",
-    "shortPoll": "60",
+    "shortPoll": "10",
     "longPoll": "600",
 	"logLevel": "WARNING",
-    "profile_version": "1.0.1",
+    "profile_version": "1.0.0",
 	"customParams": {
 		"nodes": 0,
 		"multiplier": 1
 	},
     "credits": [
     	{
-    		"title": "Example Node Server for ISY/Polyglot",
-    		"author": "Bob Paauwe",
-    		"version": "1.0.1",
-    		"date": "August 11, 2021",
-    		"source": "https://github.com/UniversalDevicesInc/udi-example3-poly",
-			"license": "https://github.com/UniversalDevicesInc/udi-example3-poly/LICENSE"
+    		"title": "Govee Local Network Based NodeServer",
+    		"author": "Matt Burke",
+    		"version": "1.0.0",
+    		"date": "November 25, 2021",
+    		"source": "https://github.com/residualimages/govee_local_ud_nodeserver/",
+			"license": "https://github.com/residualimages/govee_local_ud_nodeserver/LICENSE"
 		}
 	],
 	"store" : {
-		"developer": "bpaauwe@bobsplace.com",
+		"developer": "Matt_Burke@alumni.baylor.edu",
 		"price": 0.00,
 		"recurring": 0,
 		"recurring_interval": "month",
