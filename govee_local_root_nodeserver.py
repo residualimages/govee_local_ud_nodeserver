@@ -7,7 +7,7 @@ MIT License
 """
 import udi_interface
 import sys
-from nodes import count_ctl
+from nodes import govee_local_controller
 
 LOGGER = udi_interface.LOGGER
 
@@ -17,7 +17,7 @@ if __name__ == "__main__":
         polyglot.start()
 
         # Create the controller node
-        count_ctl.Controller(polyglot, 'controller', 'controller', 'Counter')
+        govee_local_controller.Controller(polyglot, 'controller', 'controller', 'Counter')
 
         # Just sit and wait for events
         polyglot.runForever()
