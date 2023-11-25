@@ -20,7 +20,7 @@ multiplied by a user defined multiplier. These get updated at every
 shortPoll interval.
 '''
 class Controller(udi_interface.Node):
-    id = 'ctl'
+    id = 'govee_local_controller'
     drivers = [
             {'driver': 'ST', 'value': 1, 'uom': 2},
             {'driver': 'GV0', 'value': 0, 'uom': 56},
