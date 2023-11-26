@@ -114,6 +114,11 @@ class GoveeLocalDevice(udi_interface.Node):
         LOGGER.info('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
         if int(self.getDriver('FREQ')) < 0:
             self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
+        
+        if 'shortPoll' in polltype:
+            nowEpoch = int(time.time())
+            nowDT = datetime.datetime.fromtimestamp(nowEpoch)
+            self.pushTextToDriver('TIME',nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
 
     '''
     Handling for <text /> attribute.
