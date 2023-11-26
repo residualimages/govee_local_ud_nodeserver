@@ -11,6 +11,8 @@ import sys
 LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
 
+ISY = udi_interface.ISY
+
 '''
 Device node
 '''
@@ -35,6 +37,9 @@ class GoveeLocalDevice(udi_interface.Node):
         self.poly = polyglot
 
         self.Parameters = Custom(polyglot, 'customparams')
+        
+        self.ISY = ISY(self.poly)
+        self.parent = parent
 
         # subscribe to the events we want
         polyglot.subscribe(polyglot.CUSTOMPARAMS, self.parameterHandler)
