@@ -26,7 +26,7 @@ if __name__ == "__main__":
         polyglot.start()
 
         # Create the controller node
-        govee_local_controller.Controller(polyglot, 'controller', 'controller', 'Govee Local Network - NodeServer')
+        govee_local_controller.Controller(polyglot, 'controller', 'controller', 'Govee Local IP - NodeServer')
 
         # Just sit and wait for events
         polyglot.runForever()
