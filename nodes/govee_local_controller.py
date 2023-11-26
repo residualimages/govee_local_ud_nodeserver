@@ -170,7 +170,8 @@ class Controller(udi_interface.Node):
             current_DeviceName = listOfDeviceNames[i]
             
             try:
-                node = govee_local_device.GoveeLocalDevice(self.poly, self.address, address, current_DeviceName, current_IPAddress)
+                LOGGER.warning('\n\t\t Device # {}: {} at {}...'.format(how_many,current_DeviceName,current_IPaddress))
+                node = govee_local_device.GoveeLocalDevice(self.poly, self.address, address, current_DeviceName, current_IPaddress)
                 self.poly.addNode(node)
                 self.wait_for_node_done()
             except Exception as e:
