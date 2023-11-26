@@ -112,7 +112,7 @@ class GoveeLocalDevice(udi_interface.Node):
     '''
     def poll(self, polltype):
         LOGGER.warning('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
-        if self.getDriver('FREQ')=-1:
+        if int(self.getDriver('FREQ')) < 0:
             self.pushTextToDriver('FREQ',self.ipAddress)
 
     '''
