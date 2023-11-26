@@ -70,9 +70,14 @@ class Controller(udi_interface.Node):
     def node_queue(self, data):
         if self.address == data['address']:
             self.n_queue.append(data['address'])
+            
+            ipAddresses = self.Parameters['IP_Addresses']
+            listOfIPAddresses = ipAddresses.split(";")
+            how_many = len(listOfIPAddresses)
+            
             self._fullyCreated = True
-            self.setDriver('ST', -1, True, True)   
-            self.setDriver('GV0', -1, True, True)   
+            self.setDriver('ST', 1, True, True)   
+            self.setDriver('GV0', howMany, True, True)   
             self.setDriver('GPV', -1, True, True)        
             self.pushTextToDriver('GPV','NodeServer Running')
 
