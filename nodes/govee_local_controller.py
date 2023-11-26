@@ -41,6 +41,7 @@ class Controller(udi_interface.Node):
         polyglot.subscribe(polyglot.STOP, self.stop)
         polyglot.subscribe(polyglot.START, self.start, address)
         polyglot.subscribe(polyglot.ADDNODEDONE, self.node_queue)
+        polyglot.subscribe(polyglot.POLL, self.poll)
 
         # start processing events and create add our controller node
         polyglot.ready()
@@ -123,6 +124,14 @@ class Controller(udi_interface.Node):
         self.poly.updateProfile()
 
 
+    '''
+    This is where the real work happens.  When we get a shortPoll, increment the
+    count, report the current count in GV0 and the current count multiplied by
+    the user defined value in GV1. Then display a notice on the dashboard.
+    '''
+    def poll(self, polltype):
+        LOGGER.info('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
+        
     '''
     Create the children nodes.  Since this will be called anytime the
     user changes the number of nodes and the new number may be less
