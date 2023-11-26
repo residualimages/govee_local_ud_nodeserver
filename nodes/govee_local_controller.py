@@ -95,7 +95,7 @@ class Controller(udi_interface.Node):
             ioxErrorMessage = 'MISSING IP_Addresses Parameter'
 
         if self.Parameters['Device_Names'] is not None:
-            if len(self.Parameters['Device_Names']) > 120:
+            if len(self.Parameters['Device_Names']) > 0:
                 validDevice_Names = True
             else:
                 LOGGER.warning('\n\tCONFIGURATION INCOMPLETE OR INVALID: Invalid values for Device_Names parameter.')
