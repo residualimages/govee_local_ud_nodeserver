@@ -155,6 +155,8 @@ class Controller(udi_interface.Node):
     def poll(self, polltype):
         LOGGER.warning('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
         if 'shortPoll' in polltype:
+            nowEpoch = int(time.time())
+            nowDT = datetime.datetime.fromtimestamp(nowEpoch)
             self.pushTextToDriver('GPV',"Last Short Poll Date / Time: " + nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
         
     '''
