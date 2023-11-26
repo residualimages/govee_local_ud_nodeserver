@@ -12,23 +12,27 @@ LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
 
 '''
-This is our Counter device node.  All it does is update the count at the
-poll interval.
+Device node
 '''
-class CounterNode(udi_interface.Node):
-    id = 'child'
+class GoveeLocalDevice(udi_interface.Node):
+    id = 'govee_local_device'
     drivers = [
-            {'driver': 'ST', 'value': 1, 'uom': 2},
-            {'driver': 'GV0', 'value': 0, 'uom': 56},
-            {'driver': 'GV1', 'value': 0, 'uom': 56},
-            {'driver': 'GV2', 'value': 1, 'uom': 2}
+            {'driver': 'ST', 'value': -1, 'uom': 2},
+            {'driver': 'OL', 'value': -1, 'uom': 2},
+            {'driver': 'FREQ', 'value': -1, 'uom': 2},
+            {'driver': 'PULSCNT', 'value': -1, 'uom': 2},
+            {'driver': 'GV0', 'value': -1, 'uom': 2},
+            {'driver': 'GV1', 'value': -1, 'uom': 2},
+            {'driver': 'GV2', 'value': -1, 'uom': 2},
+            {'driver': 'GV3', 'value': -1, 'uom': 2},
+            {'driver': 'TIME', 'value': -1, 'uom': 2},
+            {'driver': 'GPV', 'value': -1, 'uom': 2}
             ]
 
     def __init__(self, polyglot, parent, address, name):
         super(CounterNode, self).__init__(polyglot, parent, address, name)
 
         self.poly = polyglot
-        self.count = 0
 
         self.Parameters = Custom(polyglot, 'customparams')
 
@@ -49,35 +53,4 @@ class CounterNode(udi_interface.Node):
     the user defined value in GV1. Then display a notice on the dashboard.
     '''
     def poll(self, polltype):
-
-        if 'shortPoll' in polltype:
-            if int(self.getDriver('GV2')) == 1:
-                LOGGER.debug(f'{self.name} Incrementing...')
-                if self.Parameters['multiplier'] is not None:
-                    mult = int(self.Parameters['multiplier'])
-                else:
-                    mult = 1
-
-                self.count += 1
-
-                self.setDriver('GV0', self.count, True, True)
-                self.setDriver('GV1', (self.count * mult), True, True)
-
-                # be fancy and display a notice on the polyglot dashboard
-                self.poly.Notices[self.name] = '{}: Current count is {}'.format(self.name, self.count)
-            else:
-                LOGGER.debug(f'{self.name} NOT Incrementing...')
-
-    def set_increment(self,val=None):
-        # On startup this will always go back to true which is the default, but how do we restort the previous user value?
-        LOGGER.debug(f'{self.address} val={val}')
-        self.setDriver('GV2',val)
-
-    def cmd_set_increment(self,command):
-        val = int(command.get('value'))
-        LOGGER.debug(f'{self.address} val={val}')
-        self.set_increment(val)
-
-    commands = {
-        "SET_INCREMENT": cmd_set_increment,
-    }
+        LOGGER.info('\n\tPOLLTYPE: ' + polltype + '.\n')
