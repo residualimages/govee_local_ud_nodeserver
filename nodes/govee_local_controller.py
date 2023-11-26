@@ -153,7 +153,9 @@ class Controller(udi_interface.Node):
     the user defined value in GV1. Then display a notice on the dashboard.
     '''
     def poll(self, polltype):
-        LOGGER.info('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
+        LOGGER.warning('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
+        if 'shortPoll' in polltype:
+            self.pushTextToDriver('GPV',"Last Short Poll Date / Time: " + nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
         
     '''
     Create the children nodes.  Since this will be called anytime the
