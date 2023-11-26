@@ -1,6 +1,6 @@
 <nodeDefs>
 
-  <nodeDef id="govee_local_controller" nodeType="139" nls="govee_local_controller">
+  <nodeDef id="goveeLocalController" nodeType="139" nls="goveeLocalController">
     <sts>
       <st id="ST" editor="bool" />
       <st id="GV0" editor="raw" />
@@ -8,7 +8,7 @@
 	</sts>
   </nodeDef>
 
-  <nodeDef id="govee_local_device" nodeType="139" nls="govee_local_device">
+  <nodeDef id="goveeLocalDevice" nodeType="139" nls="goveeLocalDevice">
     <sts>
       <st id="ST" editor="offOrOnWithPercentage" />
       <st id="OL" editor="offOrOnWithPercentage" />
