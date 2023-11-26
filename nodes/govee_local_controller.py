@@ -66,7 +66,7 @@ class Controller(udi_interface.Node):
             self.setDriver('ST', -1, True, True)   
             self.setDriver('GV0', -1, True, True)   
             self.setDriver('GPV', -1, True, True)        
-            self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
+            self.pushTextToDriver('FREQ','NodeServer Running')
 
     def wait_for_node_done(self):
         while len(self.n_queue) == 0:
