@@ -33,7 +33,13 @@ class GoveeLocalDevice(udi_interface.Node):
 
     def __init__(self, polyglot, parent, address, name):
         super(CounterNode, self).__init__(polyglot, parent, address, name, ipAddress)
+        
+        # set a flag to short circuit setDriver() until the node has been fully
+        # setup in the Polyglot DB and the ISY (as indicated by START event)
+        self._initialized: bool = False
 
+        self._fullyCreated: bool = False
+        
         self.poly = polyglot
         self.ipAddress = ipAddress
 
@@ -45,6 +51,45 @@ class GoveeLocalDevice(udi_interface.Node):
         # subscribe to the events we want
         polyglot.subscribe(polyglot.CUSTOMPARAMS, self.parameterHandler)
         polyglot.subscribe(polyglot.POLL, self.poll)
+        polyglot.subscribe(polyglot.START, self.start, address)
+        polyglot.subscribe(polyglot.ADDNODEDONE, self.node_queue)
+
+    '''
+    node_queue() and wait_for_node_event() create a simple way to wait
+    for a node to be created.  The nodeAdd() API call is asynchronous and
+    will return before the node is fully created. Using this, we can wait
+    until it is fully created before we try to use it.
+    '''
+    def node_queue(self, data):
+        if self.address == data['address']:
+            
+            self._fullyCreated = True
+        
+            self.setDriver('ST', -1, True, True)
+            self.setDriver('OL', -1, True, True)
+            self.setDriver('FREQ', -1, True, True)
+            self.setDriver('PULSCNT', -1, True, True)
+            self.setDriver('GV0', -1, True, True)
+            self.setDriver('GV1', -1, True, True)
+            self.setDriver('GV2', -1, True, True)            
+            self.setDriver('GV3', -1, True, True)
+
+            self.setDriver('TIME', -1, True, True)
+            self.setDriver('GPV', -1, True, True)
+            
+            self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
+
+    def wait_for_node_done(self):
+        while len(self.n_queue) == 0:
+            time.sleep(0.1)
+        self.n_queue.pop()
+
+    # called by the interface after the node data has been put in the Polyglot DB
+    # and the node created/updated in the ISY
+    def start(self):
+        # set the initlized flag to allow setDriver to work
+        self._initialized = True
+        self.setDriver('GPV', -1, True, True)
 
     '''
     Read the user entered custom parameters.  
