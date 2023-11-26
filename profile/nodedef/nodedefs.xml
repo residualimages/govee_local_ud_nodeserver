@@ -1,11 +1,11 @@
 <nodeDefs>
-
+	
   <nodeDef id="goveeLocalController" nodeType="139" nls="goveeLocalController">
     <sts>
       <st id="ST" editor="bool" />
       <st id="GV0" editor="raw" />
       <st id="GPV" editor="rawStringToIoX" />
-	</sts>
+    </sts>
   </nodeDef>
 
   <nodeDef id="goveeLocalDevice" nodeType="139" nls="goveeLocalDevice">
@@ -22,4 +22,5 @@
       <st id="GPV" editor="rawStringToIoX" />
 	  </sts>
   </nodeDef>
+	
 </nodeDefs>
