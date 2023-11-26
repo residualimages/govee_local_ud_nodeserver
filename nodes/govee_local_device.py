@@ -30,7 +30,7 @@ class GoveeLocalDevice(udi_interface.Node):
             {'driver': 'ST', 'value': 101, 'uom': 78},
             {'driver': 'OL', 'value': 101, 'uom': 78},
             {'driver': 'FREQ', 'value': -1, 'uom': 56},
-            {'driver': 'PULSCNT', 'value': -1, 'uom': 2},
+            {'driver': 'PULSCNT', 'value': -1, 'uom': 56},
             {'driver': 'GV0', 'value': -1, 'uom': 26},
             {'driver': 'GV1', 'value': -1, 'uom': 56},
             {'driver': 'GV2', 'value': -1, 'uom': 56},
