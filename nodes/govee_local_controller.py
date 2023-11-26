@@ -174,7 +174,7 @@ class Controller(udi_interface.Node):
                 self.poly.addNode(node)
                 self.wait_for_node_done()
             except Exception as e:
-                LOGGER.error('Failed to create {} at {}: {}'.format(current_DeviceName, current_IPAddress, e))
+                LOGGER.error('Failed to create {}: {}'.format(current_DeviceName, e))
 
         self.setDriver('GV0', how_many, True, True)
 
