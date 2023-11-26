@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Polyglot v3 node server Example 3
-Copyright (C) 2021 Robert Paauwe
+Govee Local Network Polyglot v3 node server
+Copyright (C) 2023 Matt Burke
 
 MIT License
 """
@@ -14,23 +14,20 @@ LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
 
 '''
-Controller is interfacing with both Polyglot and the device. In this
-case the device is just a count that has two values, the count and the count
-multiplied by a user defined multiplier. These get updated at every
-shortPoll interval.
+Controller
 '''
 class Controller(udi_interface.Node):
     id = 'govee_local_controller'
     drivers = [
-            {'driver': 'ST', 'value': 1, 'uom': 2},
-            {'driver': 'GV0', 'value': 0, 'uom': 56},
+            {'driver': 'ST', 'value': -1, 'uom': 2},
+            {'driver': 'GV0', 'value': -1, 'uom': 2},
+            {'driver': 'GPV', 'value': -1, 'uom': 2}
             ]
 
     def __init__(self, polyglot, parent, address, name):
         super(Controller, self).__init__(polyglot, parent, address, name)
 
         self.poly = polyglot
-        self.count = 0
         self.n_queue = []
 
         self.Parameters = Custom(polyglot, 'customparams')
@@ -65,23 +62,6 @@ class Controller(udi_interface.Node):
     '''
     def parameterHandler(self, params):
         self.Parameters.load(params)
-        validChildren = False
-
-        if self.Parameters['nodes'] is not None:
-            if int(self.Parameters['nodes']) > 0:
-                validChildren = True
-            else:
-                LOGGER.error('Invalid number of nodes {}'.format(self.Parameters['nodes']))
-        else:
-            LOGGER.error('Missing number of node parameter')
-
-
-        if validChildren:
-            self.createChildren(int(self.Parameters['nodes']))
-            self.poly.Notices.clear()
-        else:
-            self.poly.Notices['nodes'] = 'Please configure the number of child nodes to create.'
-
 
     '''
     This is called when the node is added to the interface module. It is
