@@ -210,6 +210,7 @@ class Controller(udi_interface.Node):
     '''
     def pushTextToDriver(self,driver,stringToPublish):
         if not(self._fullyCreated) or not(self._initialized):
+            LOGGER.warning("\n\tPUSHING REPORT ERROR - self._fullyCreated = " + format(self._fullyCreated) + "; self._initialized = " + format(self._initialized) + ".\n")
             return
         stringToPublish = stringToPublish.replace('.','')
         if len(str(self.getDriver(driver))) <= 0:
