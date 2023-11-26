@@ -17,16 +17,16 @@ Device node
 class GoveeLocalDevice(udi_interface.Node):
     id = 'govee_local_device'
     drivers = [
-            {'driver': 'ST', 'value': -1, 'uom': 2},
-            {'driver': 'OL', 'value': -1, 'uom': 2},
-            {'driver': 'FREQ', 'value': -1, 'uom': 2},
+            {'driver': 'ST', 'value': 101, 'uom': 78},
+            {'driver': 'OL', 'value': 101, 'uom': 78},
+            {'driver': 'FREQ', 'value': -1, 'uom': 56},
             {'driver': 'PULSCNT', 'value': -1, 'uom': 2},
-            {'driver': 'GV0', 'value': -1, 'uom': 2},
-            {'driver': 'GV1', 'value': -1, 'uom': 2},
-            {'driver': 'GV2', 'value': -1, 'uom': 2},
-            {'driver': 'GV3', 'value': -1, 'uom': 2},
-            {'driver': 'TIME', 'value': -1, 'uom': 2},
-            {'driver': 'GPV', 'value': -1, 'uom': 2}
+            {'driver': 'GV0', 'value': -1, 'uom': 26},
+            {'driver': 'GV1', 'value': -1, 'uom': 56},
+            {'driver': 'GV2', 'value': -1, 'uom': 56},
+            {'driver': 'GV3', 'value': -1, 'uom': 56},
+            {'driver': 'TIME', 'value': -1, 'uom': 56},
+            {'driver': 'GPV', 'value': -1, 'uom': 56}
             ]
 
     def __init__(self, polyglot, parent, address, name):
