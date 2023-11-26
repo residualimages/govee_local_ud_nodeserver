@@ -77,7 +77,7 @@ class Controller(udi_interface.Node):
             
             self._fullyCreated = True
             self.setDriver('ST', 1, True, True)   
-            self.setDriver('GV0', howMany, True, True)   
+            self.setDriver('GV0', how_many, True, True)   
             self.setDriver('GPV', -1, True, True)        
             self.pushTextToDriver('GPV','NodeServer Running')
 
