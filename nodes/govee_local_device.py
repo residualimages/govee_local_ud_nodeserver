@@ -25,7 +25,7 @@ ISY = udi_interface.ISY
 Device node
 '''
 class GoveeLocalDevice(udi_interface.Node):
-    id = 'govee_local_device'
+    id = 'goveeLocalDevice'
     drivers = [
             {'driver': 'ST', 'value': 101, 'uom': 78},
             {'driver': 'OL', 'value': 101, 'uom': 78},
