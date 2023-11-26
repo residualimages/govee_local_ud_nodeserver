@@ -6,11 +6,6 @@
       <st id="GV0" editor="raw" />
       <st id="GPV" editor="rawStringToIoX" />
 	</sts>
-    <cmds>
-      <sends />
-      <accepts>
-      </accepts>
-    </cmds>
   </nodeDef>
 
   <nodeDef id="govee_local_device" nodeType="139" nls="govee_local_device">
@@ -26,10 +21,5 @@
       <st id="TIME" editor="dateTimeStamp" />
       <st id="GPV" editor="rawStringToIoX" />
 	  </sts>
-    <cmds>
-      <sends />
-	    <accepts>
-      </accepts>
-    </cmds>
   </nodeDef>
 </nodeDefs>
