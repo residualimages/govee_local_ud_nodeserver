@@ -94,17 +94,16 @@ class Controller(udi_interface.Node):
 
         LOGGER.info('Creating {} children counters'.format(how_many))
         for i in range(0, how_many):
-            address = 'child_{}'.format(i)
-            title = 'Child Counter {}'.format(i)
+            address = 'gvld_{}'.format(i)
+            title = 'Govee Local Device # {}'.format(i)
             try:
-                node = count_child.CounterNode(self.poly, self.address, address, title)
+                node = govee_local_device.GoveeLocalDevice(self.poly, self.address, address, title)
                 self.poly.addNode(node)
                 self.wait_for_node_done()
             except Exception as e:
                 LOGGER.error('Failed to create {}: {}'.format(title, e))
 
         self.setDriver('GV0', how_many, True, True)
-
 
     '''
     Change all the child node active status drivers to false
