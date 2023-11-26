@@ -29,8 +29,8 @@ class Controller(udi_interface.Node):
     id = 'govee_local_controller'
     drivers = [
             {'driver': 'ST', 'value': -1, 'uom': 2},
-            {'driver': 'GV0', 'value': -1, 'uom': 2},
-            {'driver': 'GPV', 'value': -1, 'uom': 2}
+            {'driver': 'GV0', 'value': -1, 'uom': 56},
+            {'driver': 'GPV', 'value': -1, 'uom': 56}
             ]
 
     def __init__(self, polyglot, parent, address, name):
