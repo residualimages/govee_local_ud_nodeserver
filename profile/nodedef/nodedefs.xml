@@ -1,31 +1,34 @@
 <nodeDefs>
 
-  <nodeDef id="ctl" nodeType="139" nls="ctl">
+  <nodeDef id="govee_local_controller" nodeType="139" nls="govee_local_controller">
     <sts>
       <st id="ST" editor="bool" />
       <st id="GV0" editor="raw" />
+      <st id="GPV" editor="rawStringToIoX" />
 	</sts>
     <cmds>
       <sends />
       <accepts>
-        <cmd id="DISCOVER" />
       </accepts>
     </cmds>
   </nodeDef>
 
-  <nodeDef id="child" nodeType="139" nls="str">
+  <nodeDef id="govee_local_device" nodeType="139" nls="govee_local_device">
     <sts>
-      <st id="ST" editor="bool" />
-      <st id="GV0" editor="raw" />
-      <st id="GV1" editor="raw" />
-      <st id="GV2" editor="bool" />
+      <st id="ST" editor="offOrOnWithPercentage" />
+      <st id="OL" editor="offOrOnWithPercentage" />
+      <st id="FREQ" editor="ipAddress" />
+      <st id="PULSCNT" editor="macAddress" />
+      <st id="GV0" editor="color_tempK" />
+      <st id="GV1" editor="color_r" />
+      <st id="GV2" editor="color_g" />
+      <st id="GV3" editor="color_b" />
+      <st id="TIME" editor="dateTimeStamp" />
+      <st id="GPV" editor="rawStringToIoX" />
 	  </sts>
     <cmds>
       <sends />
 	    <accepts>
-        <cmd id="SET_INCREMENT">
-          <p id="" editor="bool" init="GV2" />
-        </cmd>
       </accepts>
     </cmds>
   </nodeDef>
