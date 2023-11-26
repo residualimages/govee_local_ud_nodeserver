@@ -27,7 +27,13 @@ class Controller(udi_interface.Node):
 
     def __init__(self, polyglot, parent, address, name):
         super(Controller, self).__init__(polyglot, parent, address, name)
+        
+        # set a flag to short circuit setDriver() until the node has been fully
+        # setup in the Polyglot DB and the ISY (as indicated by START event)
+        self._initialized: bool = False
 
+        self._fullyCreated: bool = False
+        
         self.poly = polyglot
         self.n_queue = []
 
@@ -55,6 +61,9 @@ class Controller(udi_interface.Node):
     '''
     def node_queue(self, data):
         self.n_queue.append(data['address'])
+        self._fullyCreated = True
+        self.setDriver('GPV', -1, True, True)        
+        self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
 
     def wait_for_node_done(self):
         while len(self.n_queue) == 0:
@@ -119,6 +128,9 @@ class Controller(udi_interface.Node):
     the profiles to the ISY.
     '''
     def start(self):
+        # set the initlized flag to allow setDriver to work
+        self._initialized = True
+        
         self.poly.setCustomParamsDoc()
         # Not necessary to call this since profile_version is used from server.json
         self.poly.updateProfile()
