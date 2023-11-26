@@ -40,7 +40,7 @@ class GoveeLocalDevice(udi_interface.Node):
             ]
 
     def __init__(self, polyglot, parent, address, name, ipAddress):
-        super(CounterNode, self).__init__(polyglot, parent, address, name, ipAddress)
+        super(govee_local_device, self).__init__(polyglot, parent, address, name, ipAddress)
         
         # set a flag to short circuit setDriver() until the node has been fully
         # setup in the Polyglot DB and the ISY (as indicated by START event)
