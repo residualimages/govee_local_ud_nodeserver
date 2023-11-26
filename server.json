@@ -11,8 +11,8 @@
 	"logLevel": "WARNING",
     "profile_version": "1.0.0",
 	"customParams": {
-		"nodes": 0,
-		"multiplier": 1
+		"IP_Addresses": "",
+		"Device_Names": ""
 	},
     "credits": [
     	{
