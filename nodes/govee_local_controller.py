@@ -12,6 +12,7 @@ from nodes import govee_local_device
 
 LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
+ISY = udi_interface.ISY
 
 '''
 Controller
