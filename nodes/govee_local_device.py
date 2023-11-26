@@ -111,9 +111,9 @@ class GoveeLocalDevice(udi_interface.Node):
     the user defined value in GV1. Then display a notice on the dashboard.
     '''
     def poll(self, polltype):
-        LOGGER.warning('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
+        LOGGER.info('\n\tPOLLTYPE: ' + polltype + ' received by ' + self.address + '.\n')
         if int(self.getDriver('FREQ')) < 0:
-            self.pushTextToDriver('FREQ',self.ipAddress)
+            self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
 
     '''
     Handling for <text /> attribute.
