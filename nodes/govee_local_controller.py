@@ -60,10 +60,13 @@ class Controller(udi_interface.Node):
     until it is fully created before we try to use it.
     '''
     def node_queue(self, data):
-        self.n_queue.append(data['address'])
-        self._fullyCreated = True
-        self.setDriver('GPV', -1, True, True)        
-        self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
+        if self.address == data['address']:
+            self.n_queue.append(data['address'])
+            self._fullyCreated = True
+            self.setDriver('ST', -1, True, True)   
+            self.setDriver('GV0', -1, True, True)   
+            self.setDriver('GPV', -1, True, True)        
+            self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
 
     def wait_for_node_done(self):
         while len(self.n_queue) == 0:
