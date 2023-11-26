@@ -300,13 +300,3 @@ class Controller(udi_interface.Node):
                     localConnection.close()  
         else:
             LOGGER.warning("\n\t\PUSHING REPORT ERROR on '" + self.address + "' for driver " + driver + ": looks like this is a PG3 install but the ISY authorization state seems to currently be 'Unauthorized': 'True'.\n")
-
-
-    '''
-    Just to show how commands are implemented. The commands here need to
-    match what is in the nodedef profile file. 
-    '''
-    def noop(self):
-        LOGGER.info('Discover not implemented')
-
-    commands = {'DISCOVER': noop}
