@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Polyglot v3 node server Example 3
-Copyright (C) 2021 Robert Paauwe
+Govee Local Network Polyglot v3 node server
+Copyright (C) 2023 Matt Burke
 
 MIT License
 """
