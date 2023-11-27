@@ -124,7 +124,7 @@ class GoveeLocalDevice(udi_interface.Node):
             sock.sendto(queryCmd, (self.ipAddress, udpPort))
             sock.bind(("127.0.0.1", 5005))
             data = ""
-            while data = "":
+            while data == "":
                 data, addr = sock.recvfrom(1024)
             LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data)
             nowEpoch = int(time.time())
