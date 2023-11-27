@@ -1,8 +1,8 @@
-ND-goveeLocalController-NAME = Govee Local Network Based NodeServer Controller
-ND-goveeLocalController-ICON = GenericCtl
-ST-goveeLocalController-ST-NAME = NodeServer Online
-ST-goveeLocalController-GV0-NAME = Number of Devices
-ST-goveeLocalController-GPV-NAME = Message from NodeServer
+ND-ctl-NAME = Govee Local Network Based NodeServer Controller
+ND-ctl-ICON = GenericCtl
+ST-ctl-ST-NAME = NodeServer Online
+ST-ctl-GV0-NAME = Number of Devices
+ST-ctl-GPV-NAME = Message from NodeServer
 
 ND-goveeLocalDevice-NAME = Govee Local Network Controlled Device
 ND-goveeLocalDevice-ICON = LampAndSwitch
