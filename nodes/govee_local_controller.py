@@ -26,7 +26,7 @@ ISY = udi_interface.ISY
 Controller
 '''
 class Controller(udi_interface.Node):
-    id = 'goveeLocalController'
+    id = 'ctl'
     drivers = [
             {'driver': 'ST', 'value': -1, 'uom': 2},
             {'driver': 'GV0', 'value': -1, 'uom': 56},
