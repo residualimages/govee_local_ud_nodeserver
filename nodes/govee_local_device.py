@@ -120,17 +120,20 @@ class GoveeLocalDevice(udi_interface.Node):
             queryCmd = "{" + chr(34) + "msg" + chr(34) + ":{" + chr(34) + "cmd" + chr(34) + ":" + chr(34) + "devStatus" + chr(34) + "," + chr(34) + "data" + chr(34) + ":{}}}"
             udpPort = 4003
             LOGGER.warning("\n\tUDP Request about to be sent...\n")
-            sockSend = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            sockSend.connect((self.ipAddress, udpPort))
-            sockSend.settimeout(10)
-            sockSend.send(queryCmd.encode())
-            data = ""
-            time.sleep(1)
-            dataAndAddress = sockSend.recvfrom(1024)
-            data = dataAndAddress[0]
-            address = dataAndAddress[1]
-            sockSend.close()
-            LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
+            try:
+                sockSend = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sockSend.connect((self.ipAddress, udpPort))
+                sockSend.settimeout(10)
+                sockSend.send(queryCmd.encode())
+                data = ""
+                time.sleep(1)
+                dataAndAddress = sockSend.recvfrom(1024)
+                data = dataAndAddress[0]
+                address = dataAndAddress[1]
+                sockSend.close()
+                LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
+            except:
+                LOGGER.error("\n\tUDP Send / Receive error for shortPoll of '" + self.address + "'.\n")
             nowEpoch = int(time.time())
             nowDT = datetime.datetime.fromtimestamp(nowEpoch)
             self.pushTextToDriver('TIME',nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
