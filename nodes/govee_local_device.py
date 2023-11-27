@@ -126,7 +126,9 @@ class GoveeLocalDevice(udi_interface.Node):
             sockSend.send(queryCmd.encode())
             data = ""
             time.sleep(1)
-            data = sockSend.recv(1024).decode()
+            dataAndAddress = sockSend.recvfrom(1024)
+            data = dataAndAddress[0]
+            address = dataAndAddress[1]
             sockSend.close()
             LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
             nowEpoch = int(time.time())
