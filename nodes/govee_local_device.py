@@ -120,11 +120,14 @@ class GoveeLocalDevice(udi_interface.Node):
             queryCmd = "{" + chr(34) + "msg" + chr(34) + ":{" + chr(34) + "cmd" + chr(34) + ":" + chr(34) + "devStatus" + chr(34) + "," + chr(34) + "data" + chr(34) + ":{}}}"
             udpPort = 4003
             LOGGER.warning("\n\tUDP Request about to be sent...\n")
-            sockSend = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            sockSend.sendto(queryCmd.encode(), (self.ipAddress, udpPort))
+            sockSend = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sockSend.connect(self.ipAddress, udpPort)
+            sockSend.settimeout(10)
+            sockSend.send(queryCmd.encode())
             data = ""
             time.sleep(1)
             data = sockSend.recv(1024).decode()
+            sockSend.close()
             LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
             nowEpoch = int(time.time())
             nowDT = datetime.datetime.fromtimestamp(nowEpoch)
