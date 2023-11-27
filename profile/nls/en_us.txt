@@ -1,7 +1,7 @@
 ND-ctl-NAME = Govee Local Network Based NodeServer Controller
 ND-ctl-ICON = GenericCtl
 ST-ctl-ST-NAME = NodeServer Online
-ST-ctl-GV0-NAME = Number of Devices
+ST-ctl-GV1-NAME = Number of Devices
 ST-ctl-GPV-NAME = Message from NodeServer
 
 ND-goveeLocalDevice-NAME = Govee Local Network Controlled Device
