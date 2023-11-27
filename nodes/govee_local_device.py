@@ -117,7 +117,7 @@ class GoveeLocalDevice(udi_interface.Node):
             self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
         
         if 'shortPoll' in polltype:
-            queryCmd = "{" + Chr(34) + "msg" + Chr(34) + ":{" + Chr(34) + "cmd" + Chr(34) + ":" + Chr(34) + "devStatus" + Chr(34) + "," + Chr(34) + "data" + Chr(34) + ":{}}}"
+            queryCmd = "{" + chr(34) + "msg" + chr(34) + ":{" + chr(34) + "cmd" + chr(34) + ":" + chr(34) + "devStatus" + chr(34) + "," + chr(34) + "data" + chr(34) + ":{}}}"
             udpPort = 4003
             LOGGER.warning("\n\tUDP Request about to be sent...\n")
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
