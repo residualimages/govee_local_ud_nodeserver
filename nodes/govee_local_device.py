@@ -131,8 +131,8 @@ class GoveeLocalDevice(udi_interface.Node):
                         break
                 sockSend.close()
                 LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
-            except:
-                LOGGER.error("\n\tUDP Send / Receive error for shortPoll of '" + self.address + "'.\n")
+            except Exception as e:
+                LOGGER.error("\n\tUDP Send / Receive error for shortPoll of '" + self.address + "':\n\t\t%s\n",str(e))
             nowEpoch = int(time.time())
             nowDT = datetime.datetime.fromtimestamp(nowEpoch)
             self.pushTextToDriver('TIME',nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
