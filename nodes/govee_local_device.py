@@ -123,8 +123,8 @@ class GoveeLocalDevice(udi_interface.Node):
             sockSend = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             sockSend.sendto(queryCmd.encode(), (self.ipAddress, udpPort))
             data = ""
-            while data == "":
-                data, addr = sockSend.recvfrom(1024)
+            time.sleep(1)
+            data = sockSend.recv(1024).decode()
             LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data.decode())
             nowEpoch = int(time.time())
             nowDT = datetime.datetime.fromtimestamp(nowEpoch)
