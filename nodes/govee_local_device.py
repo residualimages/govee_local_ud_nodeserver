@@ -10,6 +10,7 @@ import sys
 import time
 import string
 import re
+import socket
 
 # Standard Library
 from typing import Optional, Any, TYPE_CHECKING
@@ -116,6 +117,16 @@ class GoveeLocalDevice(udi_interface.Node):
             self.pushTextToDriver('FREQ',self.ipAddress.replace('.','-'))
         
         if 'shortPoll' in polltype:
+            queryCmd = "{" + Chr(34) + "msg" + Chr(34) + ":{" + Chr(34) + "cmd" + Chr(34) + ":" + Chr(34) + "devStatus" + Chr(34) + "," + Chr(34) + "data" + Chr(34) + ":{}}}"
+            udpPort = 4003
+            LOGGER.warning("\n\tUDP Request about to be sent...\n")
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock.sendto(queryCmd, (self.ipAddress, udpPort))
+            sock.bind(("127.0.0.1", 5005))
+            data = ""
+            while data = "":
+                data, addr = sock.recvfrom(1024)
+            LOGGER.warning("\n\t\tUDP Reponse Received:\n\t\t\t%s\n" + data)
             nowEpoch = int(time.time())
             nowDT = datetime.datetime.fromtimestamp(nowEpoch)
             self.pushTextToDriver('TIME',nowDT.strftime("%m/%d/%Y %I:%M:%S %p"))
