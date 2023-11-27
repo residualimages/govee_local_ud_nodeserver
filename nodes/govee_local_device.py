@@ -125,7 +125,7 @@ class GoveeLocalDevice(udi_interface.Node):
                 sockSend.connect((self.ipAddress, udpPort))
                 sockSend.send(queryCmd.encode())
                 data = ""
-                while true:
+                while True:
                     data = data + sockSend.recv(256)
                     if data != "":
                         break
