@@ -1,6 +1,6 @@
 <nodeDefs>
 
-  <nodeDef id="goveeLocalController" nodeType="139" nls="goveeLocalController">
+  <nodeDef id="ctl" nodeType="139" nls="ctl">
     <sts>
       <st id="ST" editor="bool" />
       <st id="GV1" editor="raw" />
